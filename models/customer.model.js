@@ -4,7 +4,7 @@ var moment = require('moment');
 var mongoose_delete = require('mongoose-delete');
 
 var customerSchema = new Mongoose.Schema({
-    id: String,
+    code: String,
     name: String,
     address: String,
     dateOfbirth: Date,

@@ -25,7 +25,7 @@ const uuid = require('uuid/v4');
 router.get('/', function (req, res) {
     if (req.params.id) {
         Customer.find({
-            id: req.params.id
+            code: req.params.id
         }, function (err, result) {
             res.json(result);
         });
@@ -137,8 +137,8 @@ function transformFilter(reqParams) {
  */
 router.post('/', function (req, res, next) {
     var customer = req.body;
-    if (!customer.id) {
-        customer.id = uuid();
+    if (!customer.code) {
+        customer.code = uuid();
     }
     Customer.create(customer, function (err, item) {
         res.setHeader('Date', new Date());
@@ -159,7 +159,7 @@ router.delete('/:id', function (req, res, next) {
     var id = req.params.id;
     if (id) {
         Customer.delete({
-            id: id
+            code: id
         }, function (err, result) {
             res.setHeader('Date', new Date());
             if (err)
@@ -185,7 +185,7 @@ router.delete('/remove/:id', function (req, res, next) {
     var id = req.params.id;
     if (id) {
         Customer.remove({
-            id: id
+            code: id
         }, function (err, result) {
             res.setHeader('Date', new Date());
             if (err)
@@ -230,7 +230,7 @@ router.put('/:id', function (req, res, next) {
     var customer = req.body;
     var id = req.params.id;
     Customer.update({
-        id: id
+        code: id
     }, customer, function (err, result) {
         res.setHeader('Date', new Date());
         res.status(200).send();
